@@ -1,0 +1,14 @@
+---
+title: "README"
+output: pdf_document
+date: "2024-04-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## README
+
+I plan to make a snakemake pipeline to generate read count matrices from 10X multiome (Gene Expression and ATAC sequencing) data. The pipeline will include multiple steps, including building a custom reference (Peromyscus maniculatus), generating a cell matrix using the 10X CellRanger ARC package, and visualizing the result files.
+
