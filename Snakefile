@@ -30,6 +30,8 @@ rule filter_annotation:
         annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
     output:
         filtered_annotation = "{REFERENCE_DIR}/{input.annotation.name}_filtered.gtf"
+    log: 
+    	"Results/logs/filter_annotation.log"
     shell:
         """
         cellranger-arc mkref \
@@ -60,6 +62,8 @@ rule config:
         gtf = rules.filter_annotation.output.filtered_annotation
     output:
         config = "Pman_genome.config"
+    log: 
+    	"Results/logs/config.log"
     shell:
         """
         cat > {output.config} << EOF
@@ -78,6 +82,8 @@ rule mkref:
         config = rules.config.output.config
     output:
         directory("Reference_Genome")
+    log: 
+    	"Results/logs/mkref.log"
     shell:
         "cellranger-arc mkref \
             --config={input.config}"
@@ -90,6 +96,8 @@ rule multiome_analysis:
         libraries = "{INPUT_DIR}/libraries.csv"
     output:
         directory("Results/analysis/{sample}")
+    log: 
+    	"Results/logs/multiome_analysis.log"
     shell:
         "cellranger-arc count \
             --id={wildcards.sample} \
