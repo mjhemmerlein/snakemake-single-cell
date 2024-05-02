@@ -1,3 +1,6 @@
+# Define samples
+SAMPLES = ["KW10-*"]
+
 # Define the paths for input and output directories
 INPUT_DIR = "Raw_Data"
 OUTPUT_DIR = "Results"
@@ -95,9 +98,9 @@ rule multiome_analysis:
         ref = "{REFERENCE_DIR}/Pman_genome",
         libraries = "{INPUT_DIR}/libraries.csv"
     output:
-        "Results/analysis/{sample}"
+        directory("Results/analysis/{sample}")
     log:
-        "Results/logs/multiome_analysis.log"
+        "Results/logs/multiome_analysis_{sample}.log"
     shell:
         "cellranger-arc count \
             --id={wildcards.sample} \
