@@ -91,22 +91,23 @@ rule mkref:
         "cellranger-arc mkref \
             --config={input.config}"
 
-# Rule for running the 10X Multiome analysisa
-rule multiome_analysis:
+rule cellranger_arc_count:
     input:
-        fastq = "{INPUT_DIR}/{sample}",
-        ref = "{REFERENCE_DIR}/Pman_genome",
-        libraries = "{INPUT_DIR}/libraries.csv"
+        reference = "{REFERENCE_DIR}/Pman_genome",
+        libraries = "{INPUT_DIR}/libraries.csv",
+        fastq = lambda wildcards: expand("{INPUT_DIR}/{sample}_*.fastq.gz", sample=wildcards.sample)
     output:
-        directory("Results/analysis/{sample}")
+        "Results/analysis/{sample}"
     log:
-        "Results/logs/multiome_analysis_{sample}.log"
+        "Results/logs/cellranger_arc_count_{sample}.log"
     shell:
-        "cellranger-arc count \
+        """
+        cellranger-arc count \
             --id={wildcards.sample} \
-            --reference={input.ref} \
+            --reference={input.reference} \
             --libraries={input.libraries} \
-            --outdir={output}"
+            --fastqs={" ".join(input.fastq)}
+        """
 
 # Define the target rule (the final output you want to generate)
 rule all:
