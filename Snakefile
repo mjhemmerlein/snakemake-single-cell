@@ -103,7 +103,7 @@ rule cellranger_arc_count:
         cellranger-arc count \
             --id=KW10_Multiome \
             --reference={input.reference} \
-            --libraries={input.libraries} \
+            --libraries={input.libraries}
         """
 
 # Define the target rule (the final output you want to generate)
