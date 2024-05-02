@@ -1,5 +1,5 @@
 # Define samples
-SAMPLES = ["KW10-*"]
+SAMPLES = ["KW10-ATAC_1", "KW10-ATAC_2", "KW10-ATAC_3", "KW10-ATAC_4", "KW10-GEX"]
 
 # Define the paths for input and output directories
 INPUT_DIR = "Raw_Data"
@@ -91,7 +91,7 @@ rule mkref:
         "cellranger-arc mkref \
             --config={input.config}"
 
-# Rule for running the 10X Multiome analysis
+# Rule for running the 10X Multiome analysisa
 rule multiome_analysis:
     input:
         fastq = "{INPUT_DIR}/{sample}",
