@@ -29,9 +29,9 @@ rule filter_annotation:
     input:
         annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
     output:
-        filtered_annotation = "{REFERENCE_DIR}/{input.annotation.name}_filtered.gtf"
-    log: 
-    	"Results/logs/filter_annotation.log"
+        filtered_annotation = "{REFERENCE_DIR}/{input.annotation.name}_filtered_{rulename}.gtf"
+    log:
+        "{OUTPUT_DIR}/logs/filter_annotation_{rulename}.log"
     shell:
         """
         cellranger-arc mkref \
