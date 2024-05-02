@@ -1,5 +1,7 @@
+import glob
+
 # Define samples
-SAMPLES = ["KW10"]
+SAMPLES = glob.glob("Raw_Data/KW10*.fastq.gz")
 
 # Define the paths for input and output directories
 INPUT_DIR = "Raw_Data"
@@ -96,7 +98,7 @@ rule cellranger_arc_count:
     input:
         reference = f"{REFERENCE_DIR}/Pman_genome",
         libraries = f"{INPUT_DIR}/libraries.csv",
-        fastq = lambda wildcards: expand("{INPUT_DIR}/{sample}_*.fastq.gz", sample=wildcards.sample)
+        fastq=["RawData/{sample}.fastq.gz" for sample in SAMPLES]
     output:
         "Results/analysis/{sample}_Multiome/"
     log:
@@ -104,10 +106,10 @@ rule cellranger_arc_count:
     shell:
         """
         cellranger-arc count \
-            --id={wildcards.sample} \
+            --id={wildcards.sample}_Multiome \
             --reference={input.reference} \
             --libraries={input.libraries} \
-            --fastqs={" ".join(input.fastq)}
+            --fastq=["Raw_Data/{sample}.fastq.gz" for sample in SAMPLES]
         """
 
 # Define the target rule (the final output you want to generate)
