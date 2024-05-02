@@ -109,8 +109,3 @@ rule cellranger_arc_count:
             --libraries={input.libraries} \
             --fastqs={" ".join(input.fastq)}
         """
-
-# Define the target rule (the final output you want to generate)
-rule all:
-    input:
-        expand("Results/analysis/{sample}_Multiome/summary.csv", sample=SAMPLES)
