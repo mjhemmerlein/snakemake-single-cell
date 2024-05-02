@@ -29,9 +29,9 @@ checkpoint filter_annotation:
     input:
         annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
     output:
-        filtered_annotation = "{REFERENCE_DIR}/{input.annotation.name}_filtered.gtf"
+        filtered_annotation = "Reference_Genome/{input.annotation.name}_filtered.gtf"
     log:
-        "{OUTPUT_DIR}/logs/filter_annotation.log"
+        "Results/logs/filter_annotation.log"
     shell:
         """
         cellranger-arc mkref \
@@ -81,7 +81,7 @@ rule mkref:
         genes = rules.filter_annotation.output.filtered_annotation,
         config = rules.config.output.config
     output:
-        directory("Reference_Genome")
+        "Reference_Genome"
     log:
         "Results/logs/mkref.log"
     shell:
@@ -95,7 +95,7 @@ rule multiome_analysis:
         ref = "{REFERENCE_DIR}/Pman_genome",
         libraries = "{INPUT_DIR}/libraries.csv"
     output:
-        directory("Results/analysis/{sample}")
+        "Results/analysis/{sample}"
     log:
         "Results/logs/multiome_analysis.log"
     shell:
