@@ -1,5 +1,5 @@
 # Define samples
-SAMPLES = ["KW10-ATAC_1", "KW10-ATAC_2", "KW10-ATAC_3", "KW10-ATAC_4", "KW10-GEX"]
+SAMPLES = ["KW10"]
 
 # Define the paths for input and output directories
 INPUT_DIR = "Raw_Data"
