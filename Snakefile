@@ -98,7 +98,7 @@ rule cellranger_arc_count:
         libraries = f"{INPUT_DIR}/libraries.csv",
         fastq = lambda wildcards: expand("{INPUT_DIR}/{sample}_*.fastq.gz", sample=wildcards.sample)
     output:
-        "Results/analysis/{sample}/"
+        "Results/analysis/{sample}_Multiome/"
     log:
         "Results/logs/cellranger_arc_count_{sample}.log"
     shell:
@@ -113,4 +113,4 @@ rule cellranger_arc_count:
 # Define the target rule (the final output you want to generate)
 rule all:
     input:
-        expand("Results/analysis/{sample}/web_summary.html", sample=SAMPLES)
+        expand("Results/analysis/{sample}_Multiome/summary.csv", sample=SAMPLES)
