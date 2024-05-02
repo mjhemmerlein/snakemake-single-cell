@@ -37,7 +37,7 @@ checkpoint filter_annotation:
         "Results/logs/filter_annotation.log"
     shell:
         """
-        cellranger-arc mkgtf \
+        cellranger-arc mkref \
             --attribute=gene_biotype:protein_coding \
             --attribute=gene_biotype:lncRNA \
             --attribute=gene_biotype:antisense \
@@ -109,3 +109,8 @@ rule cellranger_arc_count:
             --libraries={input.libraries} \
             --fastqs={" ".join(input.fastq)}
         """
+
+# Define the target rule (the final output you want to generate)
+rule all:
+    input:
+        expand("Results/analysis/{sample}_Multiome/summary.csv", sample=SAMPLES)
