@@ -82,7 +82,7 @@ rule mkref:
     input:
         config = "Pman_genome.config"
     output:
-        "Reference_Genome"
+        directory("Reference_Genome/Pman_genome")
     log:
         "Results/logs/mkref.log"
     shell:
