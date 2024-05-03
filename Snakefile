@@ -37,7 +37,7 @@ rule filter_annotation:
         "Results/logs/filter_annotation.log"
     shell:
         """
-        cellranger-arc mkref \
+        cellranger-arc mkgtf \
             --attribute=gene_biotype:protein_coding \
             --attribute=gene_biotype:lncRNA \
             --attribute=gene_biotype:antisense \
