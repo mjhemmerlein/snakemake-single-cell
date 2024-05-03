@@ -80,8 +80,6 @@ rule config:
 # Rule for creating the reference genome
 rule mkref:
     input:
-        fasta = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.dna.toplevel.fa",
-        genes = rules.filter_annotation.output.filtered_annotation,
         config = rules.config.output.config
     output:
         "Reference_Genome"
