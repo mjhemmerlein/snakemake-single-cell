@@ -1,6 +1,6 @@
 ﻿fastqs,sample,library_type
-/home/mjhemm/projects/CellRanger/01_input,KW10-ATAC_1,Chromatin Accessibility
-/home/mjhemm/projects/CellRanger/01_input,KW10-ATAC_2,Chromatin Accessibility
-/home/mjhemm/projects/CellRanger/01_input,KW10-ATAC_3,Chromatin Accessibility
-/home/mjhemm/projects/CellRanger/01_input,KW10-ATAC_4,Chromatin Accessibility
-/home/mjhemm/projects/CellRanger/01_input,KW10-GEX,Gene Expression
+Raw_Data/,KW10-ATAC_1,Chromatin Accessibility
+Raw_Data/,KW10-ATAC_2,Chromatin Accessibility
+Raw_Data/,KW10-ATAC_3,Chromatin Accessibility
+Raw_Data/,KW10-ATAC_4,Chromatin Accessibility
+Raw_Data/,KW10-GEX,Gene Expression
