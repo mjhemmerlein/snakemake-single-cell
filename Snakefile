@@ -1,3 +1,5 @@
+# Run over samples
+SAMPLES = ["KW10"]
 
 # Define the paths for input and output directories
 INPUT_DIR = "Raw_Data"
@@ -95,13 +97,13 @@ rule cellranger_arc_count:
         reference = "{REFERENCE_DIR}/Pman_genome",
         libraries = "{INPUT_DIR}/libraries.csv"
     output:
-        "Results/analysis/KW10_Multiome/"
+        "Results/analysis/{sample}_Multiome/"
     log:
-        "Results/logs/cellranger_arc_count_KW10.log"
+        "Results/logs/cellranger_arc_count_{sample}.log"
     shell:
         """
         cellranger-arc count \
-            --id=KW10_Multiome \
+            --id={sample}_Multiome \
             --reference={input.reference} \
             --libraries={input.libraries}
         """
@@ -109,4 +111,4 @@ rule cellranger_arc_count:
 # Define the target rule (the final output you want to generate)
 rule all:
     input:
-        expand("Results/analysis/KW10_Multiome/summary.csv")
+        expand("Results/analysis/{sample}_Multiome/outs/summary.csv", {samples} = SAMPLE)
