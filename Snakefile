@@ -62,7 +62,7 @@ rule filter_annotation:
 rule config:
     input:
         fasta = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.dna.toplevel.fa",
-        gtf = rules.filter_annotation.output.filtered_annotation
+        filtered_annotation = "Reference_Genome/{input.annotation.name}_filtered.gtf"
     output:
         config = "Pman_genome.config"
     log:
@@ -73,14 +73,14 @@ rule config:
         organism: "Peromyscus_maniculatus"
         genome: ["Pman_genome"]
         input_fasta: ["Peromyscus_maniculatus_bairdii.HU_Pman_2.1.dna.toplevel.fa"]
-        input_gtf: ["{input.gtf}"]
+        input_gtf: ["{input.filtered_annotation}"]
         EOF
         """
 
 # Rule for creating the reference genome
 rule mkref:
     input:
-        config = rules.config.output.config
+        config = "Pman_genome.config"
     output:
         "Reference_Genome"
     log:
