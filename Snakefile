@@ -111,4 +111,4 @@ rule cellranger_arc_count:
 # Define the target rule (the final output you want to generate)
 rule all:
     input:
-        expand("Results/analysis/{sample}_Multiome/outs/summary.csv", sample = SAMPLES)
+        expand("Results/analysis/{sample}_Multiome/", sample = SAMPLES)
