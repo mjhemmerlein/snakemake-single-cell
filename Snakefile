@@ -95,7 +95,7 @@ rule cellranger_arc_count:
         reference = "{REFERENCE_DIR}/Pman_genome",
         libraries = "{INPUT_DIR}/libraries.csv"
     output:
-        summary = ("Results/analysis/{sample}_Multiome/outs/summary.csv", sample = SAMPLES)
+        summary = ("Results/analysis/{sample}_Multiome/outs/summary.csv", sample == SAMPLES)
     log:
         "Results/logs/cellranger_arc_count_{sample}.log"
     shell:
