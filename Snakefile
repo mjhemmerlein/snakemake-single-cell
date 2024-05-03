@@ -95,7 +95,7 @@ rule cellranger_arc_count:
         reference = "{REFERENCE_DIR}/Pman_genome",
         libraries = "{INPUT_DIR}/libraries.csv"
     output:
-        "Results/analysis/{sample}_Multiome/"
+        "Results/analysis/{sample}_Multiome/outs/summary.csv", sample = SAMPLES)
     log:
         "Results/logs/cellranger_arc_count_{sample}.log"
     shell:
@@ -105,8 +105,3 @@ rule cellranger_arc_count:
             --reference={input.reference} \
             --libraries={input.libraries}
         """
-
-# Define the target rule (the final output you want to generate)
-rule all:
-    input:
-        expand("Results/analysis/{sample}_Multiome/outs/summary.csv", sample = SAMPLES)
