@@ -88,6 +88,7 @@ rule mkref:
         "cellranger-arc mkref \
             --config={input.config}"
 
+
 # Rule for cell ranger arc count
 rule cellranger_arc_count:
     input:
