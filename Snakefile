@@ -95,9 +95,11 @@ rule cellranger_arc_count:
         reference = "Reference_Genome/Pman_genome",
         libraries = "Raw_Data/libraries.csv"
     output:
-        summary = "Results/analysis/{wildcards.sample}_Multiome/outs/summary.csv"
+        summary = "Results/analysis/{sample}_Multiome/outs/summary.csv"
     log:
-        "Results/logs/cellranger_arc_count_{wildcards.sample}.log"
+        "Results/logs/cellranger_arc_count_{sample}.log"
+    wildcard_constraints:
+        sample = "|".join(SAMPLES)
     shell:
         """
         cellranger-arc count \
