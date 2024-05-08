@@ -11,29 +11,11 @@ rule all:
     input:
         expand("Results/analysis/{sample}_Multiome/outs/summary.csv", sample=SAMPLES)
 
-# Rule for installing cellranger-arc
-rule install_cellranger_arc:
-    output:
-        touch("cellranger-arc.installed")
-    params:
-        cellranger_arc_path = "/home/mjhemm/projects/snakemake-single-cell/cellranger-arc-2.0.2"
-    shell:
-        """
-        # Add cellranger-arc to PATH
-        export PATH={params.cellranger_arc_path}:$PATH
-
-        # Verify installation
-        cellranger-arc --version
-
-        # Create a dummy file to mark the rule as completed
-        touch cellranger-arc.installed
-        """
 
 # Rule for filtering annotation reference genome
 rule filter_annotation:
     input:
-        annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf",
-        install_cellranger_arc = "cellranger-arc.installed"
+        annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
     output:
         filtered_annotation = "Reference_Genome/{input.annotation.name}_filtered.gtf"
     log:
