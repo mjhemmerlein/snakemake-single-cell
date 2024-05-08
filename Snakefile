@@ -10,14 +10,12 @@ REFERENCE_DIR = "Reference_Genome"
 rule install_cellranger_arc:
     output:
         touch("cellranger-arc.installed")
+    params:
+        cellranger_arc_path = "/home/mjhemm/projects/CellRanger/01_input/cellranger-arc-2.0.2"
     shell:
         """
-        # Download and extract cellranger-arc
-        wget -O cellranger-arc-2.0.2.tar.gz "https://cf.10xgenomics.com/releases/cell-arc/cellranger-arc-2.0.2.tar.gz?Expires=1705486220&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZi4xMHhnZW5vbWljcy5jb20vcmVsZWFzZXMvY2VsbC1hcmMvY2VsbHJhbmdlci1hcmMtMi4wLjIudGFyLmd6IiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzA1NDg2MjIwfX19XX0_&Signature=kjD6jPqvREd~rcxX0AiBfJQlc9QDtJjWDfQm1TMLOxjgGVH3uSk7uymY4iQXOU-T3jMu5KutNsp4vgR7Bp7cKg03heyMVRf05vm4c5dJTqyrzaee7cc0MafwtbJLMK5wpwXb0jAVTI9VVbJSKf1RF8aFqpxbnSi8iaHrvwT45vjedQXHj5UyuxEe-9IDP45G4lHgcP9Rac~E9TLAuceuQYRpN0ye9kL4i1CbEU~Hxg~BfDWdPUeC~iY6AEfZYf8qC1qSmpiNYgNkvL0r4YPCxJo9oq-9asofFoNrfZLzLGeJ22Yfq9FobCZ9V7X79tnKSNO-UkPV1ejRm4tCfcasTg__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
-        tar -xzf cellranger-arc-2.0.2.tar.gz
-
         # Add cellranger-arc to PATH
-        echo 'export PATH=$PWD/cellranger-arc-2.0.2:$PATH' >> $HOME/.bashrc
+        echo 'export PATH={params.cellranger_arc_path}:$PATH' >> $HOME/.bashrc
         source $HOME/.bashrc
 
         # Verify installation
