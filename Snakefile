@@ -17,7 +17,7 @@ rule filter_annotation:
     input:
         annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
     output:
-        filtered_annotation = "Reference_Genome/{input.annotation.name}_filtered.gtf"
+        filtered_annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf_filtered.gtf"
     log:
         "Results/logs/filter_annotation.log"
     shell:
