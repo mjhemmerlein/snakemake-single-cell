@@ -92,8 +92,8 @@ rule mkref:
 # Rule for cell ranger arc count
 rule cellranger_arc_count:
     input:
-        reference = "{REFERENCE_DIR}/Pman_genome",
-        libraries = "{INPUT_DIR}/libraries.csv"
+        reference = "Reference_Genome/Pman_genome",
+        libraries = "Raw_Data/libraries.csv"
     output:
         summary = "Results/analysis/{wildcards.sample}_Multiome/outs/summary.csv"
     log:
