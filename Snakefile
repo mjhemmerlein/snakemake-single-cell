@@ -22,7 +22,7 @@ rule filter_annotation:
         "Results/logs/filter_annotation.log"
     shell:
         """
-        cellranger-arc mkgtf input.annotation output.filtered_annotation\
+        cellranger-arc mkgtf input.annotation output.filtered_annotation \
             --attribute=gene_biotype:protein_coding \
             --attribute=gene_biotype:lncRNA \
             --attribute=gene_biotype:antisense \
@@ -39,8 +39,7 @@ rule filter_annotation:
             --attribute=gene_biotype:TR_D_gene \
             --attribute=gene_biotype:TR_J_gene \
             --attribute=gene_biotype:TR_J_pseudogene \
-            --attribute=gene_biotype:TR_C_gene \
-            {input.annotation} > {output.filtered_annotation}
+            --attribute=gene_biotype:TR_C_gene
         """
 
 # Rule for creating config file
