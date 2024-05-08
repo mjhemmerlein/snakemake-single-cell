@@ -6,4 +6,4 @@
 #SBATCH --time=unlimited   # modify this to reflect how long to let the job go.
 #SBATCH --output=/home/mjhemm/projects/snakemake-single-cell/Results/logs/snakemake_%J.txt
 
-snakemake --conda-frontend conda all
+snakemake --conda-frontend conda --cores 4 all
