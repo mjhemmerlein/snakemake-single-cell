@@ -65,7 +65,7 @@ rule mkref:
     input:
         config = "Pman_genome.config"
     output:
-        directory("Reference_Genome/Pman_genome")
+        directory("Pman_genome")
     log:
         "Results/logs/mkref.log"
     shell:
@@ -76,7 +76,7 @@ rule mkref:
 # Rule for cell ranger arc count
 rule cellranger_arc_count:
     input:
-        reference = "Reference_Genome/Pman_genome",
+        reference = "Pman_genome",
         libraries = "Raw_Data/libraries.csv"
     output:
         summary = "Results/analysis/{sample}_Multiome/outs/summary.csv"
