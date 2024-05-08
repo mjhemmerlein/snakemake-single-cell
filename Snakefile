@@ -22,7 +22,7 @@ rule filter_annotation:
         "Results/logs/filter_annotation.log"
     shell:
         """
-        cellranger-arc mkgtf input.annotation output.filtered_annotation \
+        cellranger-arc mkgtf Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf_filtered.gtf \
             --attribute=gene_biotype:protein_coding \
             --attribute=gene_biotype:lncRNA \
             --attribute=gene_biotype:antisense \
