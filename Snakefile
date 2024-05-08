@@ -6,6 +6,11 @@ INPUT_DIR = "Raw_Data"
 OUTPUT_DIR = "Results"
 REFERENCE_DIR = "Reference_Genome"
 
+# Final output
+rule all:
+    input:
+        expand("Results/analysis/{sample}_Multiome/outs/summary.csv", sample=SAMPLES)
+
 # Rule for installing cellranger-arc
 rule install_cellranger_arc:
     output:
