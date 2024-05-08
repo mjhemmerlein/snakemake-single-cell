@@ -17,12 +17,12 @@ rule filter_annotation:
     input:
         annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
     output:
-        filtered_annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf_filtered.gtf"
+        filtered_annotation = "Reference_Genome/filtered_Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
     log:
         "Results/logs/filter_annotation.log"
     shell:
         """
-        cellranger-arc mkgtf Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf_filtered.gtf \
+        cellranger-arc mkgtf Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf Reference_Genome/filtered_Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf \
             --attribute=gene_biotype:protein_coding \
             --attribute=gene_biotype:lncRNA \
             --attribute=gene_biotype:antisense \
@@ -46,7 +46,7 @@ rule filter_annotation:
 rule config:
     input:
         fasta = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.dna.toplevel.fa",
-        filtered_annotation = "Reference_Genome/{input.annotation.name}_filtered.gtf"
+        filtered_annotation = "Reference_Genome/filtered_Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
     output:
         config = "Pman_genome.config"
     log:
@@ -57,7 +57,7 @@ rule config:
         organism: "Peromyscus_maniculatus"
         genome: ["Pman_genome"]
         input_fasta: ["Peromyscus_maniculatus_bairdii.HU_Pman_2.1.dna.toplevel.fa"]
-        input_gtf: ["{input.filtered_annotation}"]
+        input_gtf: ["filtered_Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"]
         EOF
         """
 
