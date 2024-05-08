@@ -22,7 +22,7 @@ rule filter_annotation:
         "Results/logs/filter_annotation.log"
     shell:
         """
-        cellranger-arc mkgtf \
+        cellranger-arc mkgtf input.annotation output.filtered_annotation\
             --attribute=gene_biotype:protein_coding \
             --attribute=gene_biotype:lncRNA \
             --attribute=gene_biotype:antisense \
