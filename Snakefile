@@ -58,7 +58,6 @@ rule config:
         genome: ["Pman_genome"]
         input_fasta: ["Peromyscus_maniculatus_bairdii.HU_Pman_2.1.dna.toplevel.fa"]
         input_gtf: ["filtered_Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"]
-        EOF
         """
 
 # Rule for creating the reference genome
