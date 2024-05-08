@@ -30,7 +30,7 @@ rule install_cellranger_arc:
 # Rule for filtering annotation reference genome
 rule filter_annotation:
     input:
-        annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf"
+        annotation = "Reference_Genome/Peromyscus_maniculatus_bairdii.HU_Pman_2.1.110.gtf",
         install_cellranger_arc = "cellranger-arc.installed"
     output:
         filtered_annotation = "Reference_Genome/{input.annotation.name}_filtered.gtf"
