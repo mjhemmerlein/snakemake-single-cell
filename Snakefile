@@ -16,12 +16,11 @@ rule install_cellranger_arc:
     output:
         touch("cellranger-arc.installed")
     params:
-        cellranger_arc_path = "/home/mjhemm/projects/CellRanger/01_input/cellranger-arc-2.0.2"
+        cellranger_arc_path = "/home/mjhemm/projects/snakemake-single-cell/cellranger-arc-2.0.2"
     shell:
         """
         # Add cellranger-arc to PATH
-        echo 'export PATH={params.cellranger_arc_path}:$PATH' >> $HOME/.bashrc
-        source $HOME/.bashrc
+        export PATH={params.cellranger_arc_path}:$PATH
 
         # Verify installation
         cellranger-arc --version
