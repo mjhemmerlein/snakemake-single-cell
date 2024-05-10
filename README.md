@@ -18,7 +18,7 @@ Setting up the workflow
       - Enter `which cellranger-arc` to confirm whether cellranger-arc was successfullly added to the $PATH.  
         > Expected outcome `/home/projects/cellranger-arc-x.y.z/cellranger-arc`
    
-      - For convenience, you may want to add $PATH command to your `.bashrc` file.  
+      - For convenience, you may want to add the $PATH command to your `.bashrc` file.  
 
 4. 
 
