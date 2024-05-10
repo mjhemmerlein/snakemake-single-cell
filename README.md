@@ -6,6 +6,7 @@ This pipeline will combine multiple steps of the typical 10X Multiome workflow w
 
 This Snakemake pipeline was specifically written to analyze single cell data from deer mouse (_Peromyscus maniculatus_) placentas, necessitating the generation of a custom reference transcriptome.
 
+
 Step 1: Set up the workflow
 ------------------------
 
@@ -19,6 +20,7 @@ Step 1: Set up the workflow
         > Expected outcome `/home/projects/cellranger-arc-x.y.z/cellranger-arc`
    
       - For your convenience, you may want to add the $PATH command to your `.bashrc` file.  
+
 
 Step 2: Modify Snakefile and components to accurately reflect file paths
 -------------------------------------------------------------------
@@ -45,6 +47,7 @@ Step 2: Modify Snakefile and components to accurately reflect file paths
 4. Ensure FASTA and GTF file are in **_Reference_Genome_** directory
    - Edit FASTA and GTF file names in filter_annotation & config rules
 
+
 Step 3: Submit Snakemake job
 ----------------------------
 Test snakemake configuration by performing a dry-run via
@@ -61,10 +64,11 @@ Alternatively, edit [submit_snakemake.sh](https://github.com/mjhemmerlein/snakem
 #SBATCH --nodes=1
 #SBATCH --ntasks=24
 #SBATCH --time=unlimited
-#SBATCH --output=/home/mjhemm/projects/snakemake-single-cell/Results/logs/log_snakemake_%J.txt
+#SBATCH --output=/home/projects/Results/logs/log_snakemake_%J.txt
 
 snakemake --conda-frontend conda --cores 4 all
 ```
+
 Step 4: Check Output
 --------------------
 The output of Cell Ranger ARC should be a folder with the "SAMPLE_Multiome" name previously specified. The subfolder named `outs` will contain the main pipeline output files:
@@ -92,6 +96,12 @@ The output of Cell Ranger ARC should be a folder with the "SAMPLE_Multiome" name
 |analysis|	Various secondary analyses that utilize the ATAC data, the GEX data, and their linkage: dimensionality reduction and clustering results for the ATAC and GEX data, differential expression, and differential accessibility for all clustering results above and linkage between ATAC and GEX data|
 
 
+Step 5: Next Steps
+------------------
+
+The typical next steps include:
+- View web_summary.html
+- Import raw_feature_bc_matrix.h5 into RStudio for data analysis and visualization using [Seurat: R Toolkit for single cell genomics](https://satijalab.org/seurat/).
 
 
 
