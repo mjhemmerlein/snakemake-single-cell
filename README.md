@@ -1,6 +1,8 @@
 Snakemake Pipeline for 10X Genomics Multiome Data
 ==================================================
-The goal of this Snakemake pipeline is to streamline the processing of 10X Genomics Single Cell Multiome ATAC + Gene Expression sequencing data. Multiome data contains information pertaining to both gene expression and chromatin accessibility, allowing for linkage between the two on a single cell basis. This pipeline will combine multiple steps of the typical 10X Multiome workflow which uses [Cell Ranger ARC](https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc). Cell Ranger ARC is a set of analysis pipeline that identifies open chromatin regions and simultaneously counts transcripts and peak accessbility in a single cell.
+The goal of this Snakemake pipeline is to streamline the processing of 10X Genomics Single Cell Multiome ATAC + Gene Expression sequencing data. Multiome data contains information pertaining to both gene expression and chromatin accessibility, allowing for linkage between the two on a single cell basis. 
+
+This pipeline will combine multiple steps of the typical 10X Multiome workflow which uses [Cell Ranger ARC](https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/pipelines/latest/what-is-cell-ranger-arc). Cell Ranger ARC is a set of analysis pipeline that identifies open chromatin regions and simultaneously counts transcripts and peak accessbility in a single cell.
 
 This Snakemake pipeline was specifically written to analyze single cell data from deer mouse placentas, necessitating the generation of a custom reference transcriptome.
 
