@@ -6,7 +6,7 @@ This pipeline will combine multiple steps of the typical 10X Multiome workflow w
 
 This Snakemake pipeline was specifically written to analyze single cell data from deer mouse placentas, necessitating the generation of a custom reference transcriptome.
 
-Setting up the workflow
+Step 1: Set up the workflow
 ------------------------
 
 1. Firstly, download the latest version of [10X Cell Ranger ARC](https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/downloads/latest) into your working directory.
@@ -20,25 +20,50 @@ Setting up the workflow
    
       - For your convenience, you may want to add the $PATH command to your `.bashrc` file.  
 
-Modifying Snakefile to accurately reflect file paths
-----------------------------------------------------
+Step 2: Modify Snakefile and components to accurately reflect file paths
+-------------------------------------------------------------------
 1. Modify `SAMPLES` to reflect sample names.
    
-2. Ensure follow fastq files are in **_Raw_Data_** directory
+2. Ensure fastq files are in **_Raw_Data_** directory
       - Paired gene expression fastq files (SAMPLE-GEX_S1_L001_R1_001.fastq.gz)
       - Paired ATAC fastq files (SAMPLE-ATAC_1_S13_L001_I1_001.fastq.gz)
         
-3. Modify libraries.csv in **_Raw_Data_** directory
+3. Modify _libraries.csv_ in **_Raw_Data_** directory
       - Fastqs: A fully qualified path to the directory containing the demultiplexed FASTQ files.
-      - Sample: Assigned sample name
-      - Library_type: This field is _case-sensitive_ and must exactly match `Chromatin Accessibility` for a Multiome ATAC library and `Gene Expression` for a Multiome GEX library. 
+      - Sample: Assigned sample name.
+      - Library_type: This field is _case-sensitive_ and must exactly match `Chromatin Accessibility` for a Multiome ATAC library and `Gene Expression` for a Multiome GEX library.  
+
    
-|fastqs                 | sample    | library_type          |
-|:---------------------:|:---------:|:---------------------:|
-|/home/projects/Raw_Data|SAMP-ATAC_1|Chromatin Accessibility|
-|/home/projects/Raw_Data|SAMP-GEX   |Gene Expression        |
+```fastqs,sample,library_type
+/home/projects/Raw_Data,SAMPLE-ATAC_1,Chromatin Accessibility
+/home/projects/Raw_Data,SAMPLE-ATAC_2,Chromatin Accessibility
+/home/projects/Raw_Data,SAMPLE-ATAC_3,Chromatin Accessibility
+/home/projects/Raw_Data,SAMPLE-ATAC_4,Chromatin Accessibility
+/home/projects/Raw_Data,SAMPLE-GEX,Gene Expression
+```
+        
+4. Ensure FASTA and GTF file are in **_Reference_Genome_** directory
 
+Step 3: Submit Snakemake job
+----------------------------
+Test snakemake configuration by performing a dry-run via
+`snakemake --conda-frontend conda -np all`
 
+Execute the workflow locally using 
+`snakemake --conda-frontend conda --core 4 all`
+
+Alternatively, edit [submit_snakemake.sh](https://github.com/mjhemmerlein/snakemake-single-cell/blob/main/submit_snakemake.sh) to submit to SLURM.
+```
+#!/usr/bin/env bash
+
+#SBATCH --job-name=snakemake
+#SBATCH --nodes=1
+#SBATCH --ntasks=24 # modify this number to reflect how many cores you want to use (up to 24)
+#SBATCH --time=unlimited   # modify this to reflect how long to let the job go.
+#SBATCH --output=/home/mjhemm/projects/snakemake-single-cell/Results/logs/log_snakemake_%J.txt
+
+snakemake --conda-frontend conda --cores 4 all
+```
 
 
 
