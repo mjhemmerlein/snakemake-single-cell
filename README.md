@@ -33,9 +33,10 @@ Step 2: Modify Snakefile and components to accurately reflect file paths
 3. Modify _libraries.csv_ in **_Raw_Data_** directory
       - Fastqs: A fully qualified path to the directory containing the demultiplexed FASTQ files.
       - Sample: Assigned sample name.
-      - Library_type: This field is _case-sensitive_ and must exactly match `Chromatin Accessibility` for a Multiome ATAC library and `Gene Expression` for a Multiome GEX library.  
+      - Library_type: This field is _case-sensitive_ and must exactly match `Chromatin Accessibility` for a Multiome ATAC library and `Gene Expression` for a Multiome GEX library.
+        
+      - For example:
 
-   
 ```fastqs,sample,library_type
 /home/projects/Raw_Data,SAMPLE-ATAC_1,Chromatin Accessibility
 /home/projects/Raw_Data,SAMPLE-ATAC_2,Chromatin Accessibility
@@ -71,7 +72,9 @@ snakemake --conda-frontend conda --cores 4 all
 
 Step 4: Check Output
 --------------------
-The output of Cell Ranger ARC should be a folder with the "SAMPLE_Multiome" name previously specified. The subfolder named `outs` will contain the main pipeline output files:
+The output of Cell Ranger ARC should be a folder with the "SAMPLE_Multiome" name previously specified. 
+
+The subfolder named `outs` will contain the main pipeline output files:
 
 |File Name|Description|
 |:-------|:---------|
