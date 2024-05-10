@@ -11,9 +11,11 @@ Setting up the workflow
 
 2. Unpack using `tar -xzvf cellranger-arc-x.y.z.tar.gz`
 
-3. Prepend the Cell Ranger ARC directory to your $PATH. `export PATH=/opt/cellranger-arc-x.y.z:$PATH`. This will allow you to invoke the cellranger-arc command.  
+3. Prepend the Cell Ranger ARC directory to your $PATH. `export PATH=/opt/cellranger-arc-x.y.z:$PATH`. This will allow you to invoke the cellranger-arc command.
+   
    Enter `which cellranger-arc` to confirm whether cellranger-arc was successfullly added to the $PATH.  
-      Expected outcome `/home/projects/cellranger-arc-x.y.z/cellranger-arc`  
+   Expected outcome `/home/projects/cellranger-arc-x.y.z/cellranger-arc`
+   
    For convenience, you may want to add $PATH command to your `.bashrc` file.  
 
 5. 
